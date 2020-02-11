@@ -1,10 +1,10 @@
-# Yolo v3 Object Detection with Tensorflow 2.0 (APIS and Detections)
-Yolo v3 is an algorithm that uses deep convolutional neural networks to perform object detection <br> <br>
+# Yolov3 Object Detection with Tensorflow 2.0 (APIs and Detections)
+Yolov3 is an algorithm that uses deep convolutional neural networks to perform object detection. This repository implements Yolov3 using TensorFlow 2.0 and creates two easy-to-use APIs that you can integrate into web or mobile applications. <br> <br>
 
 ## Getting started
 
 ### Prerequisites
-This project is written in Python 3.7 using Tensorflow 2.0 (deep learning), NumPy (numerical computing), Pillow (image processing), OpenCV (computer vision) and seaborn (visualization) packages.
+This project is written in Python 3.7 using Tensorflow 2.0 (deep learning), NumPy (numerical computing), OpenCV (computer vision) packages.
 
 ```
 pip install -r requirements.txt
