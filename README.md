@@ -50,7 +50,7 @@ You can download the yolov3 weights by clicking [here](https://pjreddie.com/medi
 
 Add your custom weights file to weights folder and your custom .names file into data/labels folder.
   
-### Save the weights in Tensorflow format
+### Saving your yolov3 weights as a TensorFlow model.
 Load the weights using `load_weights.py` script. This will convert the yolov3 weights into TensorFlow .ckpt model files!
 
 ```
@@ -64,7 +64,7 @@ python load_weights.py --weights ./weights/yolov3-tiny.weights --output ./weight
 After executing one of the above lines, you should see .tf files in your weights folder.
 
 ## Running the model
-Now you can run the model using `detect.py` script. Don't forget to set the IoU (Intersection over Union) and Confidence Thresholds within your yolov3-tf2/models/py file
+Now you can run the model using `detect.py` script. Don't forget to set the IoU (Intersection over Union) and Confidence Thresholds within your yolov3-tf2/models.py file
 .
 ### Usage
 ```
@@ -79,13 +79,13 @@ Then you can find the detections in the `detections` folder.
 <br>
 You should see something like this.
 ```
-detection_1.jpg
+detection1.jpg
 ```
-![alt text](https://github.com/heartkilla/yolo-v3/blob/master/data/detection_examples/detection_1.jpg)
+![demo](https://github.com/theAIGuysCode/Object-Detection-API/blob/master/detections/detection1.jpg)
 ```
 detection_2.jpg
 ```
-![alt text](https://github.com/heartkilla/yolo-v3/blob/master/data/detection_examples/detection_2.jpg)
+![demo](https://github.com/theAIGuysCode/Object-Detection-API/blob/master/detections/detection2.jpg)
 ### Video example
 You can also run the script with video files.
 ```
