@@ -1,44 +1,71 @@
 # Yolov3 Object Detection with Tensorflow 2.0 (APIs and Detections)
-Yolov3 is an algorithm that uses deep convolutional neural networks to perform object detection. This repository implements Yolov3 using TensorFlow 2.0 and creates two easy-to-use APIs that you can integrate into web or mobile applications. <br> <br>
+Yolov3 is an algorithm that uses deep convolutional neural networks to perform object detection. This repository implements Yolov3 using TensorFlow 2.0 and creates two easy-to-use APIs that you can integrate into web or mobile applications. <br>
 
 ## Getting started
 
-### Prerequisites
-This project is written in Python 3.7 using Tensorflow 2.0 (deep learning), NumPy (numerical computing), OpenCV (computer vision) packages.
+#### Conda (Recommended)
 
+```bash
+# Tensorflow CPU
+conda env create -f conda-cpu.yml
+conda activate yolov3-object-detection-cpu
+
+# Tensorflow GPU
+conda env create -f conda-gpu.yml
+conda activate yolov3-object-detection-gpu
 ```
+
+#### Pip
+```bash
+# TensorFlow CPU
 pip install -r requirements.txt
+
+# TensorFlow GPU
+pip install -r requirements-gpu.txt
 ```
 
+### Nvidia Driver (For GPU)
+```bash
+# Ubuntu 18.04
+sudo apt-add-repository -r ppa:graphics-drivers/ppa
+sudo apt install nvidia-driver-430
+# Windows/Other
+https://www.nvidia.com/Download/index.aspx
+```
 ### Downloading official pretrained weights
-For Linux: Let's download official weights pretrained on COCO dataset. 
+For Linux: Let's download official yolov3 weights pretrained on COCO dataset. 
 
 ```
-wget -P weights https://pjreddie.com/media/files/yolov3.weights
+# yolov3
+wget https://pjreddie.com/media/files/yolov3.weights -O weights/yolov3.weights
+
+# yolov3-tiny
+wget https://pjreddie.com/media/files/yolov3-tiny.weights -O weights/yolov3-tiny.weights
 ```
 For Windows:
-You can download the yolov3 weights by clicking [here](https://pjreddie.com/media/files/yolov3.weights) and adding them to the weights folder.
+You can download the yolov3 weights by clicking [here](https://pjreddie.com/media/files/yolov3.weights) and yolov3-tiny [here](https://pjreddie.com/media/files/yolov3-tiny.weights) then save them to the weights folder.
 
 ### Using Custom trained weights
 <strong> Learn How To Train Custom YOLOV3 Weights Here: https://www.youtube.com/watch?v=zJDUhGL26iU </strong>
 
 Add your custom weights file to weights folder and your custom .names file into data/labels folder.
-
-Change 'n_classes=80' on line 97 of load_weights.py to 'n_classes=<number of classes in .names file>'.
-
-Change './weights/yolov3.weights' on line 107 of load_weights.py to './weights/<custom weights file>'.
-
-Change './data/labels/coco.names' on line 25 of detection.py to './data/labels/<custom names files>'.
   
 ### Save the weights in Tensorflow format
 Load the weights using `load_weights.py` script. This will convert the yolov3 weights into TensorFlow .ckpt model files!
 
 ```
+# yolov3
 python load_weights.py
+
+# yolov3-tiny
+python load_weights.py --weights ./weights/yolov3-tiny.weights --output ./weights/yolov3-tiny.tf --tiny
 ```
 
+After executing one of the above lines, you should see .tf files in your weights folder.
+
 ## Running the model
-Now you can run the model using `detect.py` script. Don't forget to set the IoU (Intersection over Union) and confidence thresholds.
+Now you can run the model using `detect.py` script. Don't forget to set the IoU (Intersection over Union) and Confidence Thresholds within your yolov3-tf2/models/py file
+.
 ### Usage
 ```
 python detect.py <images/video> <iou threshold> <confidence threshold> <filenames>
