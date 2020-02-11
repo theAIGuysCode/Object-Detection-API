@@ -1,4 +1,4 @@
-tensorflow==2.0
+tensorflow==2.1.0rc1
 numpy
 opencv-python
 seaborn
