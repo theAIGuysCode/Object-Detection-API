@@ -1,0 +1,5 @@
+tensorflow==2.0
+numpy
+opencv-python
+seaborn
+Flask
