@@ -4,5 +4,3 @@ opencv-python
 lxml
 tqdm
 flask
-
--e .
