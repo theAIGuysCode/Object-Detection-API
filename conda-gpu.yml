@@ -11,4 +11,5 @@ dependencies:
     - tensorflow-gpu==2.1.0rc1
     - lxml
     - tqdm
-    - -e .
+    - flask
+    - seaborn
