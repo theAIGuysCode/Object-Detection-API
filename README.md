@@ -63,6 +63,25 @@ python load_weights.py --weights ./weights/yolov3-tiny.weights --output ./weight
 
 After executing one of the above lines, you should see .tf files in your weights folder.
 
+## Running the Flask App and Using the APIs
+Now you can run a Flask application to create two object detections APIs in order to get detections through REST endpoints.
+
+Initialize and run the Flask app on port 5000 of your local machine by running the following command from the root directory of this repo in a command prompt or shell.
+```bash
+python app.py
+```
+
+### Detections API (http://localhost:5000/detections)
+While app.py is running the first available API is a POST routed to /detections on port 5000 of localhost. This endpoint takes in images as input and returns a JSON response with all the detections found within each image (classes found within the images and the associated confidence)
+
+You can test out the APIs using Postman or through Curl commands.
+
+#### Accessing Detections API with Postman (RECOMMENDED)
+Access the /detections API through Postman by the following.
+
+
+### Image API (http://localhost:5000/image)
+While app.py is running the second available API is a POST routed to /image on port 5000 of localhost. This endpoint takes in a single image as input and returns a string encoded image as the response with all the detections now drawn on the image.
 ## Running the model
 Now you can run the model using `detect.py` script. 
 
