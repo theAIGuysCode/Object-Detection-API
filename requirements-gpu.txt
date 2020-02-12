@@ -5,3 +5,4 @@ lxml
 tqdm
 flask
 seaborn
+pillow
