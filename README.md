@@ -64,44 +64,45 @@ python load_weights.py --weights ./weights/yolov3-tiny.weights --output ./weight
 After executing one of the above lines, you should see .tf files in your weights folder.
 
 ## Running the model
-Now you can run the model using `detect.py` script. Don't forget to set the IoU (Intersection over Union) and Confidence Thresholds within your yolov3-tf2/models.py file
-.
-### Usage
-```
-python detect.py <images/video> <iou threshold> <confidence threshold> <filenames>
-```
-### Images example
-Let's run an example using sample images.
-```
-python detect.py images 0.5 0.5 data/images/dog.jpg data/images/office.jpg
+Now you can run the model using `detect.py` script. 
+
+Don't forget to set the IoU (Intersection over Union) and Confidence Thresholds within your yolov3-tf2/models.py file
+
+### Usage examples
+Let's run an example or two using sample images found within the data/images folder. 
+```bash
+# yolov3
+python detect.py --images "data/images/dog.jpg, data/images/office.jpg"
+
+# yolov3-tiny
+python detect.py --weights ./weights/yolov3-tiny.tf --tiny --images "data/images/dog.jpg"
+
+# webcam
+python detect_video.py --video 0
+
+# video file
+python detect_video.py --video data/video/paris.mp4 --weights ./weights/yolov3-tiny.tf --tiny
+
+# video file with output saved (can save webcam like this too)
+python detect_video.py --video path_to_file.mp4 --output ./detections/output.avi
 ```
 Then you can find the detections in the `detections` folder.
 <br>
-You should see something like this.
+You should see these two images saved for running the first command.
 ```
 detection1.jpg
 ```
 ![demo](https://github.com/theAIGuysCode/Object-Detection-API/blob/master/detections/detection1.jpg)
 ```
-detection_2.jpg
+detection2.jpg
 ```
 ![demo](https://github.com/theAIGuysCode/Object-Detection-API/blob/master/detections/detection2.jpg)
-### Video example
-You can also run the script with video files.
-```
-python detect.py video 0.5 0.5 data/video/shinjuku.mp4
-```
-The detections will be saved as `detections.mp4` file.
-![alt text](https://github.com/heartkilla/yolo-v3/blob/master/data/detection_examples/detections.gif)
 
-## To-Do List
-* Finish migration to full TF 2.0 (remove tf.compat.v1)
-* Model training
-* Tiny Yolo Configuration
+### Video example
+![demo](https://github.com/heartkilla/yolo-v3/blob/master/data/detection_examples/detections.gif)
 
 ## Acknowledgments
+* [Yolov3 TensorFlow 2 Amazing Implementation](https://github.com/zzh8829/yolov3-tf2)
+* [Another Yolov3 TensorFlow 2](https://github.com/heartkilla/yolo-v3)
 * [Yolo v3 official paper](https://arxiv.org/abs/1804.02767)
 * [A Tensorflow Slim implementation](https://github.com/mystic123/tensorflow-yolo-v3)
-* [ResNet official implementation](https://github.com/tensorflow/models/tree/master/official/resnet)
-* [DeviceHive video analysis repo](https://github.com/devicehive/devicehive-video-analysis)
-* [A Street Walk in Shinjuku, Tokyo, Japan](https://www.youtube.com/watch?v=kZ7caIK4RXI)
