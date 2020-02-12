@@ -24,7 +24,7 @@ pip install -r requirements.txt
 pip install -r requirements-gpu.txt
 ```
 
-### Nvidia Driver (For GPU)
+### Nvidia Driver (For GPU, if you haven't set it up already)
 ```bash
 # Ubuntu 18.04
 sudo apt-add-repository -r ppa:graphics-drivers/ppa
@@ -118,6 +118,8 @@ curl.exe -X POST -F images=@data/images/dog.jpg "http://localhost:5000/image" --
 This will save the returned image to the current folder as test.png (can't output the string encoded image to command prompt)
 
 <strong> NOTE: </strong> As a backup both APIs save the images with the detections drawn overtop to the /detections folder upon each API request.
+
+These are the two APIs I currently have created for Yolov3 Object Detection and I hope you find them useful. Feel free to integrate them into your applications as needed.
 
 ## Running just the TensorFlow model
 The tensorflow model can also be run not using the APIs but through using `detect.py` script. 
