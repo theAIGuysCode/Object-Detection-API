@@ -10,11 +10,11 @@ Yolov3 is an algorithm that uses deep convolutional neural networks to perform o
 ```bash
 # Tensorflow CPU
 conda env create -f conda-cpu.yml
-conda activate yolov3-object-detection-cpu
+conda activate yolov3-cpu
 
 # Tensorflow GPU
 conda env create -f conda-gpu.yml
-conda activate yolov3-object-detection-gpu
+conda activate yolov3-gpu
 ```
 
 #### Pip
