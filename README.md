@@ -202,7 +202,7 @@ detect_video.py:
   --[no]tiny: yolov3 or yolov3-tiny
     (default: 'false')
   --weights: path to weights file
-    (default: './checkpoints/yolov3.tf')
+    (default: './weights/yolov3.tf')
   --num_classes: number of classes in the model
     (default: '80')
     (an integer)
