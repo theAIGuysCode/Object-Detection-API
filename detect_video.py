@@ -77,7 +77,7 @@ def main(_argv):
         fps  = ( fps + (1./(time.time()-t1)) ) / 2
 
         img = draw_outputs(img, (boxes, scores, classes, nums), class_names)
-        img = cv2.putText(img, "FPS: {:.2f}s".format(fps), (0, 30),
+        img = cv2.putText(img, "FPS: {:.2f}".format(fps), (0, 30),
                           cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, (0, 0, 255), 2)
         
         if FLAGS.output:
