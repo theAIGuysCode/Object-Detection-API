@@ -54,14 +54,19 @@ def main(_argv):
         fps = int(vid.get(cv2.CAP_PROP_FPS))
         codec = cv2.VideoWriter_fourcc(*FLAGS.output_format)
         out = cv2.VideoWriter(FLAGS.output, codec, fps, (width, height))
-
+    fps = 0.0
+    count = 0
     while True:
         _, img = vid.read()
 
         if img is None:
             logging.warning("Empty Frame")
             time.sleep(0.1)
-            continue
+            count+=1
+            if count < 3:
+                continue
+            else: 
+                break
 
         img_in = cv2.cvtColor(img, cv2.COLOR_BGR2RGB) 
         img_in = tf.expand_dims(img_in, 0)
@@ -69,13 +74,12 @@ def main(_argv):
 
         t1 = time.time()
         boxes, scores, classes, nums = yolo.predict(img_in)
-        t2 = time.time()
-        times.append(t2-t1)
-        times = times[-20:]
+        fps  = ( fps + (1./(time.time()-t1)) ) / 2
 
         img = draw_outputs(img, (boxes, scores, classes, nums), class_names)
-        img = cv2.putText(img, "Time: {:.2f}ms".format(sum(times)/len(times)*1000), (0, 30),
+        img = cv2.putText(img, "FPS: {:.2f}s".format(fps), (0, 30),
                           cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, (0, 0, 255), 2)
+        
         if FLAGS.output:
             out.write(img)
         cv2.imshow('output', img)
