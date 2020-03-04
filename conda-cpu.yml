@@ -1,4 +1,4 @@
-name: yolov3-object-detection-cpu
+name: yolov3-cpu
 
 dependencies:
   - python==3.7
