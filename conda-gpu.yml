@@ -1,4 +1,4 @@
-name: yolov3-object-detection-gpu
+name: yolov3-gpu
 
 dependencies:
   - python==3.7
