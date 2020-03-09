@@ -22,7 +22,7 @@ from tensorflow.keras.losses import (
 from .batch_norm import BatchNormalization
 from .utils import broadcast_iou
 
-yolo_max_boxes = 30
+yolo_max_boxes = 100
 yolo_iou_threshold = 0.5
 yolo_score_threshold = 0.5
 # customize your model through the following parameters
