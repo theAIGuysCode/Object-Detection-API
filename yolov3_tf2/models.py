@@ -22,14 +22,13 @@ from tensorflow.keras.losses import (
 from .batch_norm import BatchNormalization
 from .utils import broadcast_iou
 
-# customize your model through the following parameters
-yolo_max_boxes= 100         #maximum number of boxes detected per image
+yolo_max_boxes = 30
 yolo_iou_threshold = 0.5
 yolo_score_threshold = 0.5
-
-
-#flags.DEFINE_float('yolo_iou_threshold', 0.5, 'iou threshold')
-#flags.DEFINE_float('yolo_score_threshold', 0.5, 'score threshold')
+# customize your model through the following parameters
+flags.DEFINE_integer('yolo_max_boxes', 10, 'maximum number of detections at one time')
+flags.DEFINE_float('yolo_iou_threshold', 0.5, 'iou threshold')
+flags.DEFINE_float('yolo_score_threshold', 0.5, 'score threshold')
 
 yolo_anchors = np.array([(10, 13), (16, 30), (33, 23), (30, 61), (62, 45),
                          (59, 119), (116, 90), (156, 198), (373, 326)],
@@ -207,6 +206,9 @@ def yolo_nms(outputs, anchors, masks, classes):
 
 def YoloV3(size=None, channels=3, anchors=yolo_anchors,
            masks=yolo_anchor_masks, classes=80, training=False):
+    physical_devices = tf.config.experimental.list_physical_devices('GPU')
+    if len(physical_devices) > 0:
+        tf.config.experimental.set_memory_growth(physical_devices[0], True)
     x = inputs = Input([size, size, channels], name='input')
 
     x_36, x_61, x = Darknet(name='yolo_darknet')(x)
@@ -238,6 +240,9 @@ def YoloV3(size=None, channels=3, anchors=yolo_anchors,
 
 def YoloV3Tiny(size=None, channels=3, anchors=yolo_tiny_anchors,
                masks=yolo_tiny_anchor_masks, classes=80, training=False):
+    physical_devices = tf.config.experimental.list_physical_devices('GPU')
+    if len(physical_devices) > 0:
+        tf.config.experimental.set_memory_growth(physical_devices[0], True)
     x = inputs = Input([size, size, channels], name='input')
 
     x_8, x = DarknetTiny(name='yolo_darknet')(x)
