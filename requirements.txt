@@ -1,4 +1,4 @@
-tensorflow==2.0.1
+tensorflow==2.0.3
 numpy
 opencv-python==4.1.1.26
 lxml
