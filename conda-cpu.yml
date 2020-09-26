@@ -6,7 +6,7 @@ dependencies:
   - matplotlib
   - opencv
   - pip:
-    - tensorflow==2.0.1
+    - tensorflow==2.0.3
     - lxml
     - tqdm
     - flask
