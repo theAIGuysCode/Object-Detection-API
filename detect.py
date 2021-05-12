@@ -15,7 +15,7 @@ flags.DEFINE_string('weights', './weights/yolov3.tf',
                     'path to weights file')
 flags.DEFINE_boolean('tiny', False, 'yolov3 or yolov3-tiny')
 flags.DEFINE_integer('size', 416, 'resize images to')
-flags.DEFINE_list('images', '/data/images/dog.jpg', 'list with paths to input images')
+flags.DEFINE_list('images', './data/images/dog.jpg', 'list with paths to input images')
 flags.DEFINE_string('tfrecord', None, 'tfrecord instead of image')
 flags.DEFINE_string('output', './detections/', 'path to output folder')
 flags.DEFINE_integer('num_classes', 80, 'number of classes in the model')
