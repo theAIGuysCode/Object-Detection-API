@@ -22,7 +22,7 @@ num_classes = 80                # number of classes in model
 # load in weights and classes
 physical_devices = tf.config.experimental.list_physical_devices('GPU')
 if len(physical_devices) > 0:
-    tf.config.experimental.set_memory_growth(physical_devices[0], True)
+    tf.config.set_visible_devices(physical_devices[0:1], 'GPU')
 
 if tiny:
     yolo = YoloV3Tiny(classes=num_classes)
