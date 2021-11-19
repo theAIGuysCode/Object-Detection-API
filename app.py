@@ -45,11 +45,24 @@ def get_detections():
     images = request.files.getlist("images")
     image_names = []
     for image in images:
-        image_name = image.filename
+        image_name = "./temp/" + image.filename
         image_names.append(image_name)
-        image.save(os.path.join(os.getcwd(), image_name))
-        img_raw = tf.image.decode_image(
-            open(image_name, 'rb').read(), channels=3)
+        image.save(os.path.join(os.getcwd(), image_name[2:]))
+        try:
+            img_raw = tf.image.decode_image(
+                open(image_name, 'rb').read(), channels=3)
+        except tf.errors.InvalidArgumentError:
+            # remove temporary images
+            for name in image_names:
+                os.remove(name)
+            abort(404, "it is not an image file or image file is an unsupported format. try jpg or png")
+        except Exception as e:
+            # remove temporary images
+            for name in image_names:
+                os.remove(name)
+            print(e.__class__)
+            print(e)
+            abort(500)
         raw_images.append(img_raw)
         
     num = 0
@@ -80,7 +93,7 @@ def get_detections():
                 "confidence": float("{0:.2f}".format(np.array(scores[0][i])*100))
             })
         response.append({
-            "image": image_names[j],
+            "image": image_names[j][7:],
             "detections": responses
         })
         img = cv2.cvtColor(raw_img.numpy(), cv2.COLOR_RGB2BGR)
@@ -100,10 +113,21 @@ def get_detections():
 @app.route('/image', methods= ['POST'])
 def get_image():
     image = request.files["images"]
-    image_name = image.filename
-    image.save(os.path.join(os.getcwd(), image_name))
-    img_raw = tf.image.decode_image(
-        open(image_name, 'rb').read(), channels=3)
+    image_name = "./temp/" + image.filename
+    image.save(os.path.join(os.getcwd(), image_name[2:]))
+    try:
+        img_raw = tf.image.decode_image(
+            open(image_name, 'rb').read(), channels=3)
+    except tf.errors.InvalidArgumentError:
+        # remove temporary image
+        os.remove(image_name)
+        abort(404, "it is not an image file or image file is an unsupported format. try jpg or png")
+    except Exception as e:
+        # remove temporary image
+        os.remove(image_name)
+        print(e.__class__)
+        print(e)
+        abort(500)
     img = tf.expand_dims(img_raw, 0)
     img = transform_images(img, size)
 
