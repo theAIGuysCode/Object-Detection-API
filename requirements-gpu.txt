@@ -1,4 +1,4 @@
-tensorflow-gpu==2.1.2
+tensorflow-gpu==2.5.3
 numpy
 opencv-python==4.1.1.26
 lxml
